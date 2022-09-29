@@ -1,10 +1,16 @@
 const router = require('express').Router();
 const { Category, Product } = require('../../models');
-
+const sequelize = require('sequelize');
 // The `/api/categories` endpoint
+
 
 router.get('/', async (req, res) => {
   // find all categories
+  // sequelize.authenticate().then(() => {
+  //   console.log('Connection has been established successfully.');
+  // }).catch((error) => {
+  //   console.error('Unable to connect to the database: ', error);
+  // });
   try {
     const categoryData = await Category.findAll({
       include: [{ model: Product }],
